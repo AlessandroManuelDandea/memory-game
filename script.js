@@ -14,11 +14,12 @@ console.log(randomPairs);
 let img = document.querySelectorAll('.card_cont')
 console.log(img)
 
-let arrprova = []
+let salvaid = []
+let salvacolore = []
 let cont = 0
 
 
-function changeback() {
+function coloring() {
     for (let i = 0; i < randomPairs.length; i++) {
         switch (randomPairs[i]) {
             case 1:
@@ -38,27 +39,42 @@ function changeback() {
         }
     }
 }
-changeback();
+coloring();
 
 
 function showCard(x) {
-
-    arrprova.push(window.getComputedStyle(x).getPropertyValue('background'))
-    console.log(window.getComputedStyle(x).getPropertyValue('background'))
+    const firstChild = x.children[0];
+    firstChild.style.display = 'none';
+    salvacolore.push(window.getComputedStyle(x).getPropertyValue('background'))
+    salvaid.push(x.id)
+    console.log(salvacolore)
+    console.log(salvaid)
     cont++
     if (cont == 2) {
-        confronto(arrprova)
+        confronto(salvacolore, salvaid)
         cont = 0
     }
-    console.log(cont)
+
 }
 
-function confronto(x) {
+function confronto(x, y) {
     if (x[0] == x[1]) {
         console.log('sono uguali')
     }
     else {
+        const firstParent = document.getElementById(y[0])
+        const firstchild = firstParent.children[0]
+
+        const secondtParent = document.getElementById(y[1])
+        const secondtchild = secondtParent.children[0]
+
+        firstchild.style.display = 'block';
+        secondtchild.style.display = 'block';
+
         console.log('non sono uguali')
+        x.length = 0
+        y.length = 0
     }
-    x.length = 0
+
 }
+
