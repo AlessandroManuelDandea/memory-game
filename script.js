@@ -17,6 +17,7 @@ console.log(img)
 let salvaid = []
 let salvacolore = []
 let cont = 0
+let punteggio=0
 
 
 function coloring() {
@@ -54,14 +55,21 @@ function showCard(x) {
         confronto(salvacolore, salvaid)
         cont = 0
     }
-
+ 
 }
 
 function confronto(x, y) {
     if (x[0] == x[1]) {
+        punteggio++
+        if (punteggio==4) {
+            console.log('hai vinto')
+        }
         console.log('sono uguali')
+        x.length = 0
+        y.length = 0
     }
     else {
+        setTimeout(()=> {
         const firstParent = document.getElementById(y[0])
         const firstchild = firstParent.children[0]
 
@@ -74,7 +82,9 @@ function confronto(x, y) {
         console.log('non sono uguali')
         x.length = 0
         y.length = 0
+    }, 500);
     }
 
 }
+
 
